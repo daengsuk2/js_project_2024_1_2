@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영화 좌석 추천 사이트</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body styling */
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container styling */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* Header styling */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Movie card styling */
+        .movie-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .movie-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 180px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .movie-info {
+            padding: 10px;
+        }
+
+        .movie-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .movie-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>영화 좌석 추천</h1>
+        <div class="movie-list">
+            <!-- Movie 1 -->
+            <a href="movie1.html" class="movie-card">
+                <img src="https://via.placeholder.com/180x250" alt="Movie 1">
+                <div class="movie-info">
+                    <h3>영화 종류별 좌석 추천</h3>
+                    <p>한국영화, 외국자막영화 등등</p>
+                </div>
+            </a>
+
+            <!-- Movie 2 -->
+            <a href="movie2.html" class="movie-card">
+                <img src="https://via.placeholder.com/180x250" alt="Movie 2">
+                <div class="movie-info">
+                    <h3>현재 상영작 좌석 추천</h3>
+                    <p>cgv, 롯데시네마, 메가박스</p>
+                </div>
+            </a>
+
+            <!-- Movie 3 -->
+            <a href="movie3.html" class="movie-card">
+                <img src="https://via.placeholder.com/180x250" alt="Movie 3">
+                <div class="movie-info">
+                    <h3>집에서 보는 영화 배치 추천</h3>
+                    <p>넷플릭스, 왓차, 티빙</p>
+                </div>
+            </a>
+
+            <!-- Movie 4 -->
+            <a href="movie4.html" class="movie-card">
+                <img src="https://via.placeholder.com/180x250" alt="Movie 4">
+                <div class="movie-info">
+                    <h3>또 다른 유용한 정보</h3>
+                    <p>할인, 리뷰</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
