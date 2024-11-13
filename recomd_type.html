@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영화관 좌석 추천</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body styling */
+        body {
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container styling */
+        .container {
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Screen styling */
+        .screen {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        /* Movie selection buttons styling */
+        .movie-buttons {
+            margin-bottom: 20px;
+        }
+
+        .movie-button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background-color: #6c63ff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .movie-button:hover {
+            background-color: #5a54cc;
+        }
+
+        /* Seat layout styling */
+        .seat-layout {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 10px;
+            justify-items: center;
+            margin-bottom: 20px;
+        }
+
+        .seat {
+            width: 30px;
+            height: 30px;
+            background-color: #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .seat:hover {
+            background-color: #ccc;
+        }
+
+        /* Recommended seat styling */
+        .recommended {
+            background-color: #6c63ff;
+            color: #fff;
+        }
+
+        /* Reserved seat styling */
+        .reserved {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+
+        /* Legend styling */
+        .legend {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .legend-item span {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .legend-item .available { background-color: #ddd; }
+        .legend-item .recommended { background-color: #6c63ff; }
+        .legend-item .reserved { background-color: #999; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>영화관 좌석 추천</h1>
+
+        <!-- Movie selection buttons -->
+        <div class="movie-buttons">
+            <button class="movie-button" onclick="recommendSeats('action')">액션 영화</button>
+            <button class="movie-button" onclick="recommendSeats('romance')">로맨스 영화</button>
+            <button class="movie-button" onclick="recommendSeats('comedy')">코미디 영화</button>
+        </div>
+
+        <div class="screen">SCREEN</div>
+
+        <div class="seat-layout">
+            <!-- Rows of seats with recommended and reserved seats -->
+            <div class="seat" id="seat1">1</div>
+            <div class="seat" id="seat2">2</div>
+            <div class="seat" id="seat3">3</div>
+            <div class="seat reserved" id="seat4">4</div>
+            <div class="seat reserved" id="seat5">5</div>
+            <div class="seat" id="seat6">6</div>
+            <div class="seat" id="seat7">7</div>
+            <div class="seat" id="seat8">8</div>
+
+            <div class="seat" id="seat9">9</div>
+            <div class="seat" id="seat10">10</div>
+            <div class="seat" id="seat11">11</div>
+            <div class="seat" id="seat12">12</div>
+            <div class="seat" id="seat13">13</div>
+            <div class="seat" id="seat14">14</div>
+            <div class="seat" id="seat15">15</div>
+            <div class="seat" id="seat16">16</div>
+
+            <div class="seat" id="seat17">17</div>
+            <div class="seat" id="seat18">18</div>
+            <div class="seat" id="seat19">19</div>
+            <div class="seat" id="seat20">20</div>
+            <div class="seat" id="seat21">21</div>
+            <div class="seat" id="seat22">22</div>
+            <div class="seat" id="seat23">23</div>
+            <div class="seat" id="seat24">24</div>
+        </div>
+
+        <!-- Legend for seat types -->
+        <div class="legend">
+            <div class="legend-item">
+                <span class="available"></span> <span>Available</span>
+            </div>
+            <div class="legend-item">
+                <span class="recommended"></span> <span>Recommended</span>
+            </div>
+            <div class="legend-item">
+                <span class="reserved"></span> <span>Reserved</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function clearRecommendedSeats() {
+            const seats = document.querySelectorAll('.seat');
+            seats.forEach(seat => {
+                seat.classList.remove('recommended');
+            });
+        }
+
+        function recommendSeats(type) {
+            clearRecommendedSeats();
+            
+            let recommendedSeats = [];
+            
+            if (type === 'action') {
+                recommendedSeats = [11, 12, 13, 14];
+            } else if (type === 'romance') {
+                recommendedSeats = [9, 10, 15, 16];
+            } else if (type === 'comedy') {
+                recommendedSeats = [3, 4, 5, 6];
+            }
+
+            recommendedSeats.forEach(seatNumber => {
+                const seat = document.getElementById(`seat${seatNumber}`);
+                if (seat) {
+                    seat.classList.add('recommended');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
