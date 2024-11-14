@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>영화관 좌석 추천</title>
     <style>
-        /* Reset */
+        /* 전체 */
         * {
             margin: 0;
             padding: 0;
@@ -13,7 +13,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Body styling */
+        /* 바디 스타일 */
         body {
             background-color: #f4f4f9;
             display: flex;
@@ -22,7 +22,7 @@
             height: 100vh;
         }
 
-        /* Container styling */
+        /* 좌석 전체 스타일 */
         .container {
             width: 90%;
             max-width: 500px;
@@ -35,7 +35,7 @@
             color: #333;
         }
 
-        /* Screen styling */
+        /* 스크린 스타일 */
         .screen {
             width: 100%;
             padding: 10px;
@@ -46,7 +46,7 @@
             border-radius: 5px;
         }
 
-        /* Movie selection buttons styling */
+        /* 영화 종류 선택 버튼 스타일 */
         .movie-buttons {
             margin-bottom: 20px;
         }
@@ -66,7 +66,7 @@
             background-color: #5a54cc;
         }
 
-        /* Seat layout styling */
+        /* 좌석 레이아웃 스타일 */
         .seat-layout {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
@@ -91,19 +91,19 @@
             background-color: #ccc;
         }
 
-        /* Recommended seat styling */
+        /* 추천 좌석 스타일 */
         .recommended {
             background-color: #6c63ff;
             color: #fff;
         }
 
-        /* Reserved seat styling */
+        /* 추천 x 좌석 스타일 */
         .reserved {
             background-color: #999;
             cursor: not-allowed;
         }
 
-        /* Legend styling */
+        /* 좌석 및 자바스크립트 스타일 */
         .legend {
             display: flex;
             justify-content: space-around;
@@ -123,6 +123,8 @@
             display: inline-block;
         }
 
+        .kr1{white-space: nowrap;}
+
         .legend-item .available { background-color: #ddd; }
         .legend-item .recommended { background-color: #6c63ff; }
         .legend-item .reserved { background-color: #999; }
@@ -132,17 +134,17 @@
     <div class="container">
         <h1>영화관 좌석 추천</h1>
 
-        <!-- Movie selection buttons -->
+        <!-- 영화 종류 버튼 -->
         <div class="movie-buttons">
-            <button class="movie-button" onclick="recommendSeats('action')">액션 영화</button>
-            <button class="movie-button" onclick="recommendSeats('romance')">로맨스 영화</button>
-            <button class="movie-button" onclick="recommendSeats('comedy')">코미디 영화</button>
+            <button class="movie-button" onclick="recommendSeats('action')">한국 영화</button>
+            <button class="movie-button" onclick="recommendSeats('romance')">외국2D 영화</button>
+            <button class="movie-button" onclick="recommendSeats('comedy')">뮤지컬 영화</button>
         </div>
 
         <div class="screen">SCREEN</div>
 
         <div class="seat-layout">
-            <!-- Rows of seats with recommended and reserved seats -->
+            <!-- 좌석 -->
             <div class="seat" id="seat1">1</div>
             <div class="seat" id="seat2">2</div>
             <div class="seat" id="seat3">3</div>
@@ -171,16 +173,16 @@
             <div class="seat" id="seat24">24</div>
         </div>
 
-        <!-- Legend for seat types -->
+        <!-- 좌석 추천 -->
         <div class="legend">
             <div class="legend-item">
-                <span class="available"></span> <span>Available</span>
+                <span class="available"></span> <span class="kr1">좌석</span>
             </div>
             <div class="legend-item">
-                <span class="recommended"></span> <span>Recommended</span>
+                <span class="recommended"></span> <span class="kr1">추천</span>
             </div>
             <div class="legend-item">
-                <span class="reserved"></span> <span>Reserved</span>
+                <span class="reserved"></span> <span class="kr1">추천 x</span>
             </div>
         </div>
     </div>
@@ -203,7 +205,7 @@
             } else if (type === 'romance') {
                 recommendedSeats = [9, 10, 15, 16];
             } else if (type === 'comedy') {
-                recommendedSeats = [3, 4, 5, 6];
+                recommendedSeats = [10, 15, 18, 23];
             }
 
             recommendedSeats.forEach(seatNumber => {
